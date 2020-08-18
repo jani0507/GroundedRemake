@@ -27,10 +27,10 @@ public class PlayerInputs : MonoBehaviour
     void CheckKeys()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            
+        {           
             inv.ToggleInventory();
             player.canInteract = !player.canInteract;
+            
         }
     }
 }

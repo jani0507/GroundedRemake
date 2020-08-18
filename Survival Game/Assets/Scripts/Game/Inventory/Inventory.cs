@@ -7,6 +7,8 @@ public class Inventory : MonoBehaviour
 {
     public ItemDatabase database;
 
+    PlayerController player;
+
     int maxAmount = 32;
     int slotAmount = 7;
     int storageAmount = 37;
@@ -23,7 +25,7 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        
         database = gameObject.GetComponent<ItemDatabase>();
 
         for (int i = 0; i < slotAmount; i++)
@@ -43,10 +45,6 @@ public class Inventory : MonoBehaviour
             slots[i].GetComponent<RectTransform>().transform.localScale = Vector3.one;
         }
 
-        AddItem(0);
-        AddItem(0);
-        AddItem(0);
-        AddItem(1);
         AddItem(1);
 
         ToggleInventory();
@@ -57,7 +55,7 @@ public class Inventory : MonoBehaviour
     public void AddItem(int id)
     {
         Item itemToAdd = database.GetItemByID(id);
-        if (itemToAdd.Stackable && ChechInventory(itemToAdd))
+        if (itemToAdd.Stackable && CheckInventory(itemToAdd))
         {
             for (int i = 0; i < items.Count; i++)
             {
@@ -92,7 +90,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    bool ChechInventory(Item item)
+    bool CheckInventory(Item item)
     {
         for (int i = 0; i < items.Count; i++)
         {
@@ -110,5 +108,6 @@ public class Inventory : MonoBehaviour
     public void ToggleInventory()
     {
         InvCanvas.SetActive(!InvCanvas.active);
+        
     }
 }
